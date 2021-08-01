@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+<!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Meeting project by Koyji">
+    <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Koyji Meet</title>
+<!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/skeleton.css" />
+    <link rel="stylesheet" href="css/style.css" />
+<!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+<!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+<!-- SCRIPT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.20.0/dist/axios.min.js"></script>
+    <script src="https://cdn.stringee.com/sdk/web/2.2.1/stringee-web-sdk.min.js"></script>
+  </head>
+
+  <body>
+    
+    <div class="topnav">
+      <a class="active" href="/index.html"><strong>Koy</strong>ji Lab</a>
+      <a href="https://github.com/yunnam21/Koyji-Meet">Github</a>
+      <a href="https://www.facebook.com/namu.nemu18/">Liên Hệ</a>
+    </div>
+
+    <div class="container" v-cloak id="app" style="margin-top: 10%">
+      <h1 class="title">
+        <strong>Koyji</strong>Meet
+      </h1>
+      <p>Koyji - Video Call đơn giản, trực quan, bảo mật và hoàn toàn miễn phí.</p>
+      <div>
+        <button class="button-primary" v-if="!room" @click="createRoom">
+          TẠO CUỘC HỌP
+        </button>
+
+        <button class="button" v-if="!room" @click="joinWithId">
+          THAM GIA CUỘC HỌP
+        </button>
+
+        <button class="button" v-if="room" @click="publish(true)">
+          CHIA SẺ MÀN HÌNH
+        </button>
+        
+      </div>
+
+      <div v-if="roomId" class="info">
+        <p>
+          <strong>ID của bạn là:</strong> 
+          <code><strong>{{roomId}}</strong><br/></code>
+          <p><strong>Link tham gia: </strong><a v-bind:href="roomUrl" target="_blank">{{roomUrl}}</a>.</p>
+        </p>
+      </div>
+    </div>
+    
+    <div class="container">
+      <div id="videos"></div>
+    </div>
+    
+  </body>
+  
+  <script src="script/api.js"></script>
+  <script src="script/script.js"></script>
+
+</html>
